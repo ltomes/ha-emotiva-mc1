@@ -1,0 +1,56 @@
+send_command:
+  name: Send Command
+  description: Send a command to the Emotiva MC1 via RS232
+  fields:
+    command:
+      name: Command
+      description: The command to send
+      required: true
+      example: "power_on"
+      selector:
+        select:
+          options:
+            - power_on
+            - power_off
+            - volume_up
+            - volume_down
+            - mute_on
+            - mute_off
+            - mute_toggle
+            - mode_up
+            - mode_down
+            - mode_stereo
+            - mode_dolby_upmix
+            - mode_multi_channel
+            - mode_dts_neural_x
+            - mode_pure
+            - mode_direct
+            - input_hdmi_1
+            - input_hdmi_2
+            - input_hdmi_3
+            - input_hdmi_4
+            - input_hdmi_5
+            - input_hdmi_6
+            - input_arc
+            - input_bluetooth
+            - input_optical_1
+            - input_optical_2
+            - input_coax_1
+            - input_coax_2
+            - input_analog_1
+            - input_analog_2
+            - menu
+            - up
+            - down
+            - left
+            - right
+            - enter
+            - exit
+            - return
+    entry_id:
+      name: Entry ID
+      description: Target a specific Emotiva MC1 device by config entry ID. Leave blank to send to all devices.
+      required: false
+      example: "abc123"
+      selector:
+        text:

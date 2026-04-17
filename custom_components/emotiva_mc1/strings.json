@@ -1,0 +1,40 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Emotiva MC1 RS232",
+        "description": "Configure the serial connection to your Emotiva MC1 processor.",
+        "data": {
+          "serial_port": "Serial Port",
+          "baud_rate": "Baud Rate"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot open serial port. Check that the device is connected and the port path is correct."
+    },
+    "abort": {
+      "already_configured": "This serial port is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Emotiva MC1 Settings",
+        "description": "Configure your receiver. Add inputs, give them names, and link them to devices.",
+        "data": {
+          "poll_interval": "Poll Interval",
+          "power_entity": "Power Switch",
+          "display_entity": "Display Output",
+          "inputs": "Receiver Inputs"
+        },
+        "data_description": {
+          "poll_interval": "How often to query the receiver for state changes (0 to disable).",
+          "power_entity": "Smart plug switch that powers this receiver. Used for reliable on/off detection.",
+          "display_entity": "The display device connected to this receiver's output.",
+          "inputs": "Add each active input. Set a friendly name and optionally link it to a Home Assistant device."
+        }
+      }
+    }
+  }
+}

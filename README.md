@@ -4,6 +4,8 @@
 
 Control an Emotiva MC1 audio processor/preamp via RS232 serial in Home Assistant.
 
+> **Status:** Early access (0.1.x). Tested on the author's own setup; expect rough edges and occasional breaking changes until 1.0. Please file issues on GitHub if anything is broken.
+
 ```mermaid
 graph LR
     HA["Home Assistant"] -- "RS232 Serial" --> MC1["Emotiva MC1"]
@@ -38,14 +40,15 @@ graph LR
 
 ### HACS (recommended)
 
-1. Open HACS > Integrations > three-dot menu > Custom repositories
-2. Add `https://github.com/ltomes/ha-emotiva-mc1` as an Integration
-3. Search for "Emotiva MC1 RS232" and install
-4. Restart Home Assistant
+1. In HACS, open the overflow menu (⋮) → **Custom repositories**.
+2. Paste `https://github.com/ltomes/ha-emotiva-mc1`, pick type **Integration**, click **Add**.
+3. Find **Emotiva MC1 RS232** in the HACS list and click **Download**.
+4. **Restart Home Assistant.**
+5. Go to **Settings → Devices & Services → Add Integration**, search for **Emotiva MC1 RS232**, and set up the integration (see [Configuration](#configuration)).
 
 ### Manual
 
-Copy `custom_components/emotiva_mc1` to your HA `config/custom_components/` directory and restart.
+Copy `custom_components/emotiva_mc1` to your HA `config/custom_components/` directory, restart, then add the integration from **Settings → Devices & Services**.
 
 ## Configuration
 

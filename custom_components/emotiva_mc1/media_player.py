@@ -83,6 +83,7 @@ class EmotivaMC1MediaPlayer(MediaPlayerEntity, RestoreEntity):
     def supported_features(self) -> MediaPlayerEntityFeature:
         features = (
             MediaPlayerEntityFeature.VOLUME_STEP
+            | MediaPlayerEntityFeature.VOLUME_SET
             | MediaPlayerEntityFeature.VOLUME_MUTE
             | MediaPlayerEntityFeature.TURN_ON
             | MediaPlayerEntityFeature.TURN_OFF
@@ -424,7 +425,18 @@ class EmotivaMC1MediaPlayer(MediaPlayerEntity, RestoreEntity):
         self.async_write_ha_state()
 
     async def async_set_volume_level(self, volume: float) -> None:
-        await self._device.volume_set_level(volume)
+        # Safety: VOLUME_SET is advertised so phones/sliders get a volume
+        # control, but a set request never jumps. It moves ONE 0.5 dB step
+        # toward the requested level, so a slider dragged to max (or an app
+        # sending volume_set 1.0) cannot blast the room.
+        current = self.volume_level
+        if current is None:
+            _LOGGER.warning("MC1 volume_set ignored: current volume unknown")
+            return
+        if volume > current:
+            await self._device.volume_up()
+        elif volume < current:
+            await self._device.volume_down()
         self.async_write_ha_state()
 
     async def async_mute_volume(self, mute: bool) -> None:
